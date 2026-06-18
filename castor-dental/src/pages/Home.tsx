@@ -92,16 +92,15 @@ export default function Home() {
               )}
             </div>
           </div>
-          <div data-reveal className="relative min-h-[420px] lg:min-h-[500px]">
-            <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-[0_30px_70px_rgba(11,49,75,0.18)] border border-[#E6EDF4] bg-mist-2">
-              <div className="img-slot w-full h-full">
+          <div data-reveal className="relative flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[400px] lg:max-w-[440px]">
+              <div className="img-slot w-full aspect-[460/590] rounded-3xl overflow-hidden shadow-[0_30px_70px_rgba(11,49,75,0.18)] border border-[#E6EDF4] bg-mist-2">
                 <img
                   src="/assets/images/family.jpg"
                   alt="Castor Dental Care family dentistry welcome sign"
                 />
               </div>
-            </div>
-            <div className="absolute -left-[22px] bottom-9 bg-white border border-border rounded-2xl px-[18px] py-4 shadow-[0_18px_40px_rgba(11,49,75,0.16)] anim-floatCard">
+              <div className="absolute -left-[22px] bottom-9 bg-white border border-border rounded-2xl px-[18px] py-4 shadow-[0_18px_40px_rgba(11,49,75,0.16)] anim-floatCard">
               <div className="text-[12px] font-semibold tracking-[0.06em] uppercase text-faint">
                 Open this week
               </div>
@@ -119,6 +118,7 @@ export default function Home() {
               <div className="text-[12.5px] text-night-2 mt-[5px] max-w-[120px] leading-[1.4]">
                 New-patient exam + X-rays
               </div>
+            </div>
             </div>
           </div>
         </Container>
