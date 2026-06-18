@@ -16,7 +16,6 @@ import {
   HeartIcon,
   SmileIcon,
   CardIcon,
-  type IconKey,
 } from '../components/icons'
 import { SITE } from '../data/site'
 import { HOME_SERVICES, PATHWAYS } from '../data/services'

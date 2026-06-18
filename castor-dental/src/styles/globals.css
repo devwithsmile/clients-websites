@@ -22,6 +22,9 @@
   --color-night-4: #7e93a3;
   --font-display: 'Schibsted Grotesk', system-ui, sans-serif;
   --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  /* desktop nav collapses to burger below this — keeps the phone+CTA cluster
+     from overflowing in the 1024–1035px iPad-landscape band */
+  --breakpoint-nav: 1100px;
 }
 
 html,

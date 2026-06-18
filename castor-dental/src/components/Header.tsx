@@ -21,7 +21,7 @@ export function Header() {
             </span>
           </span>
         </Link>
-        <nav className="hidden lg:flex items-center gap-[2px]">
+        <nav className="hidden nav:flex items-center gap-[2px]">
           {NAV.map((n) => (
             <NavLink
               key={n.key}
@@ -48,7 +48,7 @@ export function Header() {
           </a>
           <Link
             to="/contact"
-            className="hidden lg:inline-flex items-center gap-2 bg-blue text-white no-underline font-body font-semibold text-[14.5px] px-[18px] py-[11px] rounded-full shadow-[0_8px_20px_rgba(20,116,212,0.28)] hover:-translate-y-[1px] hover:shadow-[0_12px_26px_rgba(20,116,212,0.36)] transition-transform"
+            className="hidden nav:inline-flex items-center gap-2 bg-blue text-white no-underline font-body font-semibold text-[14.5px] px-[18px] py-[11px] rounded-full shadow-[0_8px_20px_rgba(20,116,212,0.28)] hover:-translate-y-[1px] hover:shadow-[0_12px_26px_rgba(20,116,212,0.36)] transition-transform"
           >
             Book a visit
           </Link>
@@ -56,14 +56,14 @@ export function Header() {
             type="button"
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
-            className="lg:hidden w-[42px] h-[42px] rounded-[11px] border border-[#E0E8F0] bg-white grid place-items-center cursor-pointer"
+            className="nav:hidden w-[42px] h-[42px] rounded-[11px] border border-[#E0E8F0] bg-white grid place-items-center cursor-pointer"
           >
             <BurgerIcon width={20} height={20} stroke="#0E2A3D" />
           </button>
         </div>
       </div>
       {open && (
-        <div className="lg:hidden mx-auto w-[min(100%-48px,1240px)] py-[6px] pb-[18px] border-t border-border-2 flex flex-col">
+        <div className="nav:hidden mx-auto w-[min(100%-48px,1240px)] py-[6px] pb-[18px] border-t border-border-2 flex flex-col">
           {[...NAV, { path: '/contact', label: 'Book a visit', key: 'book' }].map((n) => (
             <NavLink
               key={n.key}
