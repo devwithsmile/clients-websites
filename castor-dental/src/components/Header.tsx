@@ -1,0 +1,88 @@
+import { useState } from 'react'
+import { NavLink, Link } from 'react-router-dom'
+import { NAV, SITE } from '../data/site'
+import { PhoneIcon, ToothLogo, BurgerIcon } from './icons'
+
+export function Header() {
+  const [open, setOpen] = useState(false)
+  return (
+    <header className="sticky top-0 z-[200] bg-white/80 backdrop-blur-[18px] border-b border-border">
+      <div className="mx-auto w-[min(100%-48px,1240px)] h-[74px] flex items-center justify-between gap-6">
+        <Link to="/" className="flex items-center gap-[11px] no-underline shrink-0">
+          <span className="w-[38px] h-[38px] rounded-[11px] bg-[linear-gradient(145deg,#1F86E8,#0B5FB0)] grid place-items-center shadow-[0_6px_16px_rgba(20,116,212,0.28)]">
+            <ToothLogo width={20} height={20} stroke="#fff" />
+          </span>
+          <span className="flex flex-col leading-none">
+            <strong className="font-display text-[18px] font-bold text-ink tracking-[-0.01em]">
+              Castor Dental Care
+            </strong>
+            <span className="font-body text-[11.5px] font-medium text-night-4 tracking-[0.04em] mt-[3px]">
+              NORTHEAST PHILADELPHIA
+            </span>
+          </span>
+        </Link>
+        <nav className="hidden lg:flex items-center gap-[2px]">
+          {NAV.map((n) => (
+            <NavLink
+              key={n.key}
+              to={n.path}
+              end={n.path === '/'}
+              className={({ isActive }) =>
+                'no-underline font-body text-[14.5px] font-medium px-[14px] py-[9px] rounded-full whitespace-nowrap transition-colors ' +
+                (isActive
+                  ? 'font-semibold text-blue bg-[rgba(20,116,212,0.09)]'
+                  : 'text-ink-soft hover:text-blue')
+              }
+            >
+              {n.label}
+            </NavLink>
+          ))}
+        </nav>
+        <div className="flex items-center gap-3 shrink-0">
+          <a
+            href={`tel:${SITE.phoneTel}`}
+            className="hidden sm:flex items-center gap-2 no-underline font-body font-semibold text-[14.5px] text-ink"
+          >
+            <PhoneIcon width={16} height={16} stroke="#1474D4" />
+            {SITE.phone}
+          </a>
+          <Link
+            to="/contact"
+            className="hidden lg:inline-flex items-center gap-2 bg-blue text-white no-underline font-body font-semibold text-[14.5px] px-[18px] py-[11px] rounded-full shadow-[0_8px_20px_rgba(20,116,212,0.28)] hover:-translate-y-[1px] hover:shadow-[0_12px_26px_rgba(20,116,212,0.36)] transition-transform"
+          >
+            Book a visit
+          </Link>
+          <button
+            type="button"
+            aria-label="Menu"
+            onClick={() => setOpen((v) => !v)}
+            className="lg:hidden w-[42px] h-[42px] rounded-[11px] border border-[#E0E8F0] bg-white grid place-items-center cursor-pointer"
+          >
+            <BurgerIcon width={20} height={20} stroke="#0E2A3D" />
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="lg:hidden mx-auto w-[min(100%-48px,1240px)] py-[6px] pb-[18px] border-t border-border-2 flex flex-col">
+          {[...NAV, { path: '/contact', label: 'Book a visit', key: 'book' }].map((n) => (
+            <NavLink
+              key={n.key}
+              to={n.path}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                'py-[14px] px-1 border-b border-border-2 last:border-b-0 no-underline font-body font-semibold text-[16px] ' +
+                (n.key === 'book'
+                  ? 'text-blue'
+                  : isActive
+                    ? 'text-blue'
+                    : 'text-ink')
+              }
+            >
+              {n.label}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </header>
+  )
+}
