@@ -55,34 +55,49 @@ export function Header() {
           <button
             type="button"
             aria-label="Menu"
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="nav:hidden w-[42px] h-[42px] rounded-[11px] border border-[#E0E8F0] bg-white grid place-items-center cursor-pointer"
+            className="nav:hidden w-[42px] h-[42px] rounded-[11px] border border-[#E0E8F0] bg-white grid place-items-center cursor-pointer transition-colors hover:bg-mist-2"
           >
             <BurgerIcon width={20} height={20} stroke="#0E2A3D" />
           </button>
         </div>
       </div>
-      {open && (
-        <div className="nav:hidden mx-auto w-[min(100%-48px,1240px)] py-[6px] pb-[18px] border-t border-border-2 flex flex-col">
-          {[...NAV, { path: '/contact', label: 'Book a visit', key: 'book' }].map((n) => (
-            <NavLink
-              key={n.key}
-              to={n.path}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                'py-[14px] px-1 border-b border-border-2 last:border-b-0 no-underline font-body font-semibold text-[16px] ' +
-                (n.key === 'book'
-                  ? 'text-blue'
-                  : isActive
+      {/* Mobile panel — animated slide-down via grid-rows 0fr→1fr (smooth auto height) + fade */}
+      <div
+        className={
+          'nav:hidden mx-auto w-[min(100%-48px,1240px)] grid transition-[grid-template-rows] duration-300 ease-out ' +
+          (open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')
+        }
+      >
+        <div className="overflow-hidden">
+          <div
+            className={
+              'flex flex-col py-[6px] pb-[18px] border-t border-border-2 transition-opacity duration-200 ' +
+              (open ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none')
+            }
+          >
+            {[...NAV, { path: '/contact', label: 'Book a visit', key: 'book' }].map((n) => (
+              <NavLink
+                key={n.key}
+                to={n.path}
+                tabIndex={open ? 0 : -1}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  'py-[14px] px-1 border-b border-border-2 last:border-b-0 no-underline font-body font-semibold text-[16px] ' +
+                  (n.key === 'book'
                     ? 'text-blue'
-                    : 'text-ink')
-              }
-            >
-              {n.label}
-            </NavLink>
-          ))}
+                    : isActive
+                      ? 'text-blue'
+                      : 'text-ink')
+                }
+              >
+                {n.label}
+              </NavLink>
+            ))}
+          </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }
