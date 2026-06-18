@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://castor-dental.vedryxtech.com/sitemap.xml

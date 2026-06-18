@@ -8,12 +8,16 @@ Thumbs.db
 *.swp
 *~
 
-# Node / tooling (if a build pipeline is added later)
+# Node / tooling
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Build output
+dist/
+dist-ssr/
 
 # Vercel
 .vercel/
@@ -22,4 +26,4 @@ pnpm-debug.log*
 .env
 .env.local
 .env.*.local
-.vercel
+

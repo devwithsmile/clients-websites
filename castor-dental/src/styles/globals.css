@@ -1,0 +1,207 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #0e2a3d;
+  --color-ink-soft: #42586a;
+  --color-muted: #56707f;
+  --color-muted-soft: #5c7488;
+  --color-subtle: #6a8090;
+  --color-faint: #8398a8;
+  --color-mist: #f4f9fe;
+  --color-mist-2: #eaf3fc;
+  --color-mist-3: #ddebf9;
+  --color-blue: #1474d4;
+  --color-blue-dark: #0b5fb0;
+  --color-teal: #11b5a6;
+  --color-border: #e6edf4;
+  --color-border-2: #eef3f8;
+  --color-border-3: #d8e3ee;
+  --color-night: #0b2230;
+  --color-night-2: #9fb4c2;
+  --color-night-3: #c7d6e0;
+  --color-night-4: #7e93a3;
+  --font-display: 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  /* desktop nav collapses to burger below this — keeps the phone+CTA cluster
+     from overflowing in the 1024–1035px iPad-landscape band */
+  --breakpoint-nav: 1100px;
+}
+
+html,
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+.img-slot {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: #eaf3fc;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+.img-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  max-width: 100%;
+}
+
+/* before/after split — guaranteed shrinkable below intrinsic image width */
+.img-slot.is-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: #e6edf4;
+  min-width: 0;
+}
+
+.img-slot.is-split > img {
+  min-width: 0;
+}
+
+/* details/summary marker removal */
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::marker {
+  content: '';
+}
+details summary svg.plus-icon {
+  transition: transform 0.2s ease;
+}
+details[open] summary svg.plus-icon {
+  transform: rotate(45deg);
+}
+
+/* form fields (contact would use these — kept for any minor inputs) */
+[data-field] input,
+[data-field] select,
+[data-field] textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d8e3ee;
+  border-radius: 11px;
+  min-height: 48px;
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-ink);
+  background: #fff;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+[data-field] input:focus,
+[data-field] select:focus,
+[data-field] textarea:focus {
+  outline: none;
+  border-color: #1474d4;
+  box-shadow: 0 0 0 4px rgba(20, 116, 212, 0.12);
+}
+
+/* hero blob floats */
+@keyframes floatA {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(18px, -24px);
+  }
+}
+@keyframes floatB {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-22px, 18px);
+  }
+}
+@keyframes floatCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.anim-floatA {
+  animation: floatA 14s ease-in-out infinite;
+}
+.anim-floatB {
+  animation: floatB 16s ease-in-out infinite;
+}
+.anim-floatCard {
+  animation: floatCard 6s ease-in-out infinite;
+}
+.anim-floatCard-2 {
+  animation: floatCard 7s ease-in-out infinite 1s;
+}
+
+/* reveal-on-scroll: starts hidden + slid down, JS toggles is-visible */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* prose styling (privacy page) */
+.prose h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--color-ink);
+  margin: 36px 0 10px;
+  letter-spacing: -0.01em;
+}
+.prose p {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+.prose ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+.prose li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+  margin-bottom: 6px;
+}
+.prose a {
+  color: #1474d4;
+  font-weight: 600;
+  text-decoration: none;
+}
+.prose strong {
+  color: var(--color-ink);
+}
