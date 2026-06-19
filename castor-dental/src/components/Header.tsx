@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { NAV, SITE } from '../data/site'
-import { PhoneIcon, ToothLogo, BurgerIcon } from './icons'
+import { PhoneIcon, BurgerIcon } from './icons'
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -13,12 +13,14 @@ export function Header() {
           className="flex items-center gap-[11px] no-underline shrink-0"
           aria-label="Castor Dental Care — home"
         >
-          <span
+          <img
+            src="/assets/images/castor-tooth.png"
+            alt=""
             aria-hidden="true"
-            className="w-[38px] h-[38px] rounded-[11px] bg-[linear-gradient(145deg,#1F86E8,#0B5FB0)] grid place-items-center shadow-[0_6px_16px_rgba(20,116,212,0.28)]"
-          >
-            <ToothLogo width={20} height={20} stroke="#fff" />
-          </span>
+            width={56}
+            height={43}
+            className="h-[38px] w-auto"
+          />
           <span className="flex flex-col leading-none">
             <strong className="font-display text-[17px] sm:text-[18px] font-bold text-ink tracking-[-0.01em]">
               Castor Dental Care
