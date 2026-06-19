@@ -12,24 +12,22 @@ clients-websites/
 
 - **One GitHub repo** (this one) — clone/manage once. This is the source of truth.
 - **One Vercel project per client.** Separate domains require separate Vercel projects (a Vercel constraint), but they all share this single repo.
-- **Deploy = CLI from the client subfolder:**
-  ```bash
-  cd clients-websites/<client>
-  vercel --prod        # uploads this folder's contents, aliases to the client domain
-  ```
-  Each subfolder carries its own gitignored `.vercel/` link to its Vercel project.
+- **Each Vercel project sets Root Directory = its client folder** (e.g. `castor-dental`). castor-dental's is already set.
 
-### Why CLI deploy and not git push-to-deploy
+> ⚠️ **Deploy from the MONOREPO ROOT, never the subfolder.**
+> ```bash
+> cd clients-websites        # repo root, NOT clients-websites/<client>
+> vercel --prod              # Vercel appends each project's Root Directory and builds it
+> ```
+> Because Root Directory is `castor-dental`, running `vercel --prod` from inside
+> `clients-websites/castor-dental` resolves to `castor-dental/castor-dental` (nonexistent)
+> and fails — or worse, a root-built deploy 404s the live domain. This bit prod on 2026-06-19.
 
-Git push-to-deploy needs each Vercel project's **Root Directory** set to its client subfolder
-(otherwise Vercel builds from the repo root, which has no site — only this README). That Root
-Directory setting can only be changed in the Vercel dashboard (the CLI OAuth token can't set it
-via the REST API). Until it's set per project, git is left disconnected and we deploy via CLI.
+### Push-to-deploy (optional)
 
-**To enable push-to-deploy for a client** (one-time, in the Vercel dashboard):
-1. Project → Settings → General → **Root Directory** → set to the client folder (e.g. `castor-dental`).
-2. Project → Settings → Git → **Connect** this repo.
-After that, `git push` auto-deploys and skips unaffected clients.
+Now that Root Directory is set per project, git push-to-deploy works once reconnected:
+Project → Settings → Git → **Connect** `Vedryx/clients-websites`. After that, `git push`
+auto-deploys and skips unaffected clients. Until then, deploy via CLI from the repo root (above).
 
 ## Adding a new client
 
