@@ -1,22 +1,31 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { NAV, SITE } from '../data/site'
-import { PhoneIcon, ToothLogo, BurgerIcon } from './icons'
+import { PhoneIcon, BurgerIcon } from './icons'
 
 export function Header() {
   const [open, setOpen] = useState(false)
   return (
     <header className="sticky top-0 z-[200] bg-white/80 backdrop-blur-[18px] border-b border-border">
       <div className="mx-auto w-[min(100%-48px,1240px)] h-[74px] flex items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-[11px] no-underline shrink-0">
-          <span className="w-[38px] h-[38px] rounded-[11px] bg-[linear-gradient(145deg,#1F86E8,#0B5FB0)] grid place-items-center shadow-[0_6px_16px_rgba(20,116,212,0.28)]">
-            <ToothLogo width={20} height={20} stroke="#fff" />
-          </span>
+        <Link
+          to="/"
+          className="flex items-center gap-[11px] no-underline shrink-0"
+          aria-label="Castor Dental Care — home"
+        >
+          <img
+            src="/assets/images/castor-tooth.png"
+            alt=""
+            aria-hidden="true"
+            width={56}
+            height={43}
+            className="h-[38px] w-auto"
+          />
           <span className="flex flex-col leading-none">
-            <strong className="font-display text-[18px] font-bold text-ink tracking-[-0.01em]">
+            <strong className="font-display text-[17px] sm:text-[18px] font-bold text-ink tracking-[-0.01em]">
               Castor Dental Care
             </strong>
-            <span className="font-body text-[11.5px] font-medium text-night-4 tracking-[0.04em] mt-[3px]">
+            <span className="hidden sm:inline font-body text-[11.5px] font-medium text-night-4 tracking-[0.04em] mt-[3px]">
               NORTHEAST PHILADELPHIA
             </span>
           </span>
